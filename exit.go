@@ -17,8 +17,8 @@ var AllowExit = true
 var PrintStack = true
 
 // Exit prints the plugin output and exits the program
-func Exit(rc int, output string, args ...interface{}) {
-	fmt.Println(StatusText(rc), "-", fmt.Sprintf(output, args...))
+func Exit(rc int, output string) {
+	fmt.Println(StatusText(rc), "-", output)
 	BaseExit(rc)
 }
 

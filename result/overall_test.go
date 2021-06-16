@@ -95,13 +95,15 @@ func ExampleOverall_Add() {
 
 func ExampleOverall_GetOutput() {
 	overall := Overall{}
-	overall.Add(check.OK, "One element is good")
+	overall.Add(check.OK, "One element is good%")
+	overall.Add(check.OK, "Another element is good%")
 	overall.Add(check.Critical, "The other is critical")
 
 	fmt.Println(overall.GetOutput())
 	// Output:
-	// states: critical=1 ok=1
-	// [OK] One element is good
+	// states: critical=1 ok=2
+	// [OK] One element is good%
+	// [OK] Another element is good%
 	// [CRITICAL] The other is critical
 }
 

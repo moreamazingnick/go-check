@@ -1,6 +1,7 @@
 package check
 
 import (
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -25,7 +26,7 @@ func HandleTimeout(timeout int) {
 	signal.Notify(signals, os.Interrupt, syscall.SIGTERM, syscall.SIGHUP)
 
 	if timeout < 1 {
-		Exit(Unknown, "Invalid timeout: %d", timeout)
+		Exit(Unknown, fmt.Sprintf("Invalid timeout: %d", timeout))
 	}
 
 	timedOut := time.After(time.Duration(timeout) * time.Second)
@@ -33,7 +34,7 @@ func HandleTimeout(timeout int) {
 
 	select {
 	case s := <-signals:
-		Exit(Unknown, "Received signal: %s", s)
+		Exit(Unknown, fmt.Sprintf("Received signal: %s", s))
 	case <-timedOut:
 		Exit(Unknown, "Timeout reached")
 	}
