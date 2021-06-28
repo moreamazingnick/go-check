@@ -100,6 +100,7 @@ func (h *FileHandler) Walk(rootOid string, walkFn gosnmp.WalkFunc) (err error) {
 	}
 
 	for oid, pdu := range h.Data {
+		log.Debug("FileHandler.Walk - oid: " + oid + " pdu: " + pdu.Type.String())
 		if !IsOidPartOf(oid, rootOid) {
 			continue
 		}
