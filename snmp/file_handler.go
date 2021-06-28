@@ -5,6 +5,7 @@ import (
 	"github.com/gosnmp/gosnmp"
 	"io"
 	"os"
+	log "github.com/sirupsen/logrus"
 )
 
 // Provides a GoSNMP like data interface, but with data from a snmpwalk output
@@ -92,6 +93,7 @@ func (h *FileHandler) GetNext(oids []string) (result *gosnmp.SnmpPacket, err err
 
 // Simulating Walk() behavior by searching read in data
 func (h *FileHandler) Walk(rootOid string, walkFn gosnmp.WalkFunc) (err error) {
+	log.Debug("FileHandler.Walk: " + rootOid)
 	rootOid, err = EnsureValidOid(rootOid)
 	if err != nil {
 		return
