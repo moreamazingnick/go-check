@@ -52,6 +52,10 @@ func GetSubOid(oid string, baseOid string) string {
 		return ""
 	}
 
+	if baseOid == oid {
+		return oid
+	}
+
 	l := len(baseOid)
 
 	return oid[l+1:]
